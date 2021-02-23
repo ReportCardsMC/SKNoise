@@ -9,9 +9,9 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import com.github.reportcardsmc.sknoise.SkNoise;
-import org.bukkit.event.Event;
 import com.github.reportcardsmc.sknoise.utilities.NoiseManager;
 import com.github.reportcardsmc.sknoise.utilities.NoiseType;
+import org.bukkit.event.Event;
 
 public class ExprSeed extends SimpleExpression<Number> {
 

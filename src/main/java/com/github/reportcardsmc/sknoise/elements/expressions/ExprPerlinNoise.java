@@ -7,8 +7,8 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import com.github.reportcardsmc.sknoise.SkNoise;
-import org.bukkit.event.Event;
 import com.github.reportcardsmc.sknoise.utilities.NoiseManager;
+import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
