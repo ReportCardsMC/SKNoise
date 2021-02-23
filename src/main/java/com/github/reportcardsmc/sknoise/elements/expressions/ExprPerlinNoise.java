@@ -8,6 +8,7 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import com.github.reportcardsmc.sknoise.SkNoise;
 import com.github.reportcardsmc.sknoise.utilities.NoiseManager;
+import org.bukkit.Location;
 import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
@@ -15,12 +16,15 @@ import javax.annotation.Nullable;
 public class ExprPerlinNoise extends SimpleExpression<Double> {
 
     static {
-        Skript.registerExpression(ExprPerlinNoise.class, Double.class, ExpressionType.COMBINED, "[sknoise] perlin noise [at] [x ]%number%[,] [[y ]%number%[,] [[z ]%number%]]");
+        String[] patterns = {"[sknoise] perlin noise [at] [x ]%number%[,] [[y ]%number%[,] [[z ]%number%]]",
+                "[sknoise] perlin noise [at] %location%"};
+        Skript.registerExpression(ExprPerlinNoise.class, Double.class, ExpressionType.COMBINED, patterns);
     }
 
     private Expression<Number> xLoc;
     private Expression<Number> yLoc;
     private Expression<Number> zLoc;
+    private Expression<Location> location;
 
 
     @Override
@@ -41,9 +45,13 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
     @SuppressWarnings("unchecked")
     @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.xLoc = (Expression<Number>) expressions[0];
-        this.yLoc = (Expression<Number>) expressions[1];
-        this.zLoc = (Expression<Number>) expressions[2];
+        if (i == 0) {
+            this.xLoc = (Expression<Number>) expressions[0];
+            this.yLoc = (Expression<Number>) expressions[1];
+            this.zLoc = (Expression<Number>) expressions[2];
+        } else if (i == 1) {
+            this.location = (Expression<Location>) expressions[0];
+        }
         return true;
     }
 
@@ -51,9 +59,18 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
     @Nullable
     protected Double[] get(Event event) {
         NoiseManager noiseManager = SkNoise.instance.getNoiseManager();
-        Number x = xLoc.getSingle(event);
+        Number x = null;
         Number y = null;
         Number z = null;
+        if (this.xLoc == null) {
+            if (this.location != null) {
+                Location loc = this.location.getSingle(event);
+                x = loc.getX();
+                y = loc.getY();
+                z = loc.getZ();
+            }
+
+        } else x = xLoc.getSingle(event);
         if (yLoc != null) {
             y = yLoc.getSingle(event);
             if (zLoc != null) {
