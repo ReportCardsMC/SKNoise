@@ -16,11 +16,10 @@ public class ExprAverage extends SimpleExpression<Number> {
     }
 
     Expression<Number> numbers;
-    Number[] numbersToCheck;
 
     @Override
     protected Number[] get(Event event) {
-        numbersToCheck = numbers.getArray(event);
+        Number[] numbersToCheck = numbers.getArray(event);
         Number result;
         Double sum = 0D;
         for (Number n : numbersToCheck) {
