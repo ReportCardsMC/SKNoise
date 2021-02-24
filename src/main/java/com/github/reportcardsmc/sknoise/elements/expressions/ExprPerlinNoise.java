@@ -17,7 +17,7 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
 
     static {
         String[] patterns = {"[sknoise] perlin noise [at] [x ]%number%[,] [[y ]%number%[,] [[z ]%number%]]",
-                "[sknoise] perlin noise [at] %location%"};
+                "[sknoise] perlin noise at loc[ation] %location%"};
         Skript.registerExpression(ExprPerlinNoise.class, Double.class, ExpressionType.COMBINED, patterns);
     }
 
@@ -25,6 +25,7 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
     private Expression<Number> yLoc;
     private Expression<Number> zLoc;
     private Expression<Location> location;
+    int expressionUsed;
 
 
     @Override
@@ -45,6 +46,7 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
     @SuppressWarnings("unchecked")
     @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        expressionUsed = i;
         if (i == 0) {
             this.xLoc = (Expression<Number>) expressions[0];
             this.yLoc = (Expression<Number>) expressions[1];
@@ -59,29 +61,22 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
     @Nullable
     protected Double[] get(Event event) {
         NoiseManager noiseManager = SkNoise.instance.getNoiseManager();
-        Number x = null;
-        Number y = null;
-        Number z = null;
-        if (this.xLoc == null) {
-            if (this.location != null) {
-                Location loc = this.location.getSingle(event);
-                x = loc.getX();
-                y = loc.getY();
-                z = loc.getZ();
-            }
+        double x = 0, y = 0, z = 0;
+        if (expressionUsed == 0) {
+            if (xLoc == null && yLoc == null && zLoc == null) return null;
+            x = xLoc.getSingle(event).doubleValue();
+            y = yLoc == null ? 0 : yLoc.getSingle(event).doubleValue();
+            z = zLoc == null ? 0 : zLoc.getSingle(event).doubleValue();
+        } else if (expressionUsed == 1) {
+            if (location == null) return null;
+            Location loc = location.getSingle(event);
+            if (loc == null) return null;
+            x = loc.getX();
+            y = loc.getY();
+            z = loc.getZ();
 
-        } else x = xLoc.getSingle(event);
-        if (yLoc != null) {
-            y = yLoc.getSingle(event);
-            if (zLoc != null) {
-                z = zLoc.getSingle(event);
-            }
         }
-        Double noise = null;
-        if (y == null) noise = noiseManager.getPerlin().noise(x.doubleValue());
-        if (z == null) noise = noiseManager.getPerlin().noise(x.doubleValue(), y.doubleValue());
-        if (z != null) noise = noiseManager.getPerlin().noise(x.doubleValue(), y.doubleValue(), z.doubleValue());
-        return new Double[]{noise};
+        return new Double[]{noiseManager.getPerlin().noise(x, y, z)};
     }
 
 
