@@ -61,12 +61,13 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
     @Nullable
     protected Double[] get(Event event) {
         NoiseManager noiseManager = SkNoise.instance.getNoiseManager();
-        double x = 0, y = 0, z = 0;
+        Double x = 0D, y = 0D, z = 0D;
         if (expressionUsed == 0) {
             if (xLoc == null && yLoc == null && zLoc == null) return null;
             x = xLoc.getSingle(event).doubleValue();
             y = yLoc == null ? 0 : yLoc.getSingle(event).doubleValue();
             z = zLoc == null ? 0 : zLoc.getSingle(event).doubleValue();
+            if (x == null || y == null || z == null) return null;
         } else if (expressionUsed == 1) {
             if (location == null) return null;
             Location loc = location.getSingle(event);
