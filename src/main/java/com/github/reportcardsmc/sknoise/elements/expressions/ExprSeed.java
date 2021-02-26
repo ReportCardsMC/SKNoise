@@ -30,7 +30,7 @@ public class ExprSeed extends SimpleExpression<Long> {
 
     @Override
     public boolean isSingle() {
-        return false;
+        return true;
     }
 
     @Override
