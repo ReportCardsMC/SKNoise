@@ -30,7 +30,7 @@ public class ExprSeed extends SimpleExpression<Number> {
 
     @Override
     public boolean isSingle() {
-        return false;
+        return true;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ExprSeed extends SimpleExpression<Number> {
 
     @Override
     public String toString(Event event, boolean b) {
-        return "Perlin seed expression";
+        return "Generator Seed";
     }
 
     @Override
