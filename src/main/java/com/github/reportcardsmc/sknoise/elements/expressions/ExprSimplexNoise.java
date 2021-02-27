@@ -57,7 +57,6 @@ public class ExprSimplexNoise extends SimpleExpression<Double> {
         } else if (i == 1) {
             this.location = (Expression<Location>) expressions[0];
         }
-        SkNoise.instance.getLogger().warning(parseResult.mark + "");
         if (parseResult.mark == 1) {
             this.octaves = (Expression<Integer>) expressions[expressions.length - 3];
             this.frequency = (Expression<Number>) expressions[expressions.length - 2];

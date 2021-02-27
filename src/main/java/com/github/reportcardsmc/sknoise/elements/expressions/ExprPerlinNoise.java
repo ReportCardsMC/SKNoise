@@ -10,6 +10,7 @@ import com.github.reportcardsmc.sknoise.SkNoise;
 import com.github.reportcardsmc.sknoise.utilities.NoiseManager;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
+import org.bukkit.util.noise.PerlinNoiseGenerator;
 import org.bukkit.util.noise.SimplexNoiseGenerator;
 
 import javax.annotation.Nullable;
@@ -56,7 +57,6 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
         } else if (i == 1) {
             this.location = (Expression<Location>) expressions[0];
         }
-        SkNoise.instance.getLogger().warning(parseResult.mark + "");
         if (parseResult.mark == 1) {
             this.octaves = (Expression<Integer>) expressions[expressions.length - 3];
             this.frequency = (Expression<Number>) expressions[expressions.length - 2];
@@ -95,13 +95,13 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
         }
 
         Double noise = null;
-        SimplexNoiseGenerator simp = noiseManager.getSimplex();
-        if (y == null && o == null) noise = simp.noise(x.doubleValue());
-        if (z == null && o == null) noise = simp.noise(x.doubleValue(), y.doubleValue());
-        if (z != null && o == null) noise = simp.noise(x.doubleValue(), y.doubleValue(), z.doubleValue());
-        if (y == null && o != null) noise = simp.noise(x.doubleValue(), 0, 0, o, f, a);
-        if (z == null && o != null) noise = simp.noise(x.doubleValue(), y.doubleValue(), 0, o, f, a);
-        if (z != null && o != null) noise = simp.noise(x.doubleValue(), y.doubleValue(), z.doubleValue(), o, f, a);
+        PerlinNoiseGenerator perl = noiseManager.getPerlin();
+        if (y == null && o == null) noise = perl.noise(x.doubleValue());
+        if (z == null && o == null) noise = perl.noise(x.doubleValue(), y.doubleValue());
+        if (z != null && o == null) noise = perl.noise(x.doubleValue(), y.doubleValue(), z.doubleValue());
+        if (y == null && o != null) noise = perl.noise(x.doubleValue(), 0, 0, o, f, a);
+        if (z == null && o != null) noise = perl.noise(x.doubleValue(), y.doubleValue(), 0, o, f, a);
+        if (z != null && o != null) noise = perl.noise(x.doubleValue(), y.doubleValue(), z.doubleValue(), o, f, a);
         return new Double[]{noise};
     }
 
