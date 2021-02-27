@@ -1,6 +1,11 @@
+
 # SKNoise
 
 ###### The ultimate noise addon (No, not sound)
+
+[![Get on skUnity](https://skunity.com/branding/buttons/get_on_forums.png)](https://docs.skunity.com/syntax/search/addon:sknoise)
+
+[![SkriptHubViewTheDocs](http://skripthub.net/static/addon/ViewTheDocsButton.png)](http://skripthub.net/docs/?addon=SKNoise)
 
 ---
 
@@ -64,7 +69,7 @@ add 1 to perlin seed
 
 ​	**Info** Get's an average of the given numbers
 
-​	**Pattern** (average|avg) of %numbers%
+​	**Pattern** `(average|avg) of %numbers%`
 
 ​	**Returns** (Number) Average of numbers
 

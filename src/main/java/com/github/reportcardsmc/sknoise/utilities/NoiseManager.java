@@ -8,12 +8,12 @@ import java.io.Serializable;
 
 public class NoiseManager implements Serializable {
 
-    private int simplex_seed;
-    private int perlin_seed;
+    private long simplex_seed;
+    private long perlin_seed;
     public PerlinNoiseGenerator perlin_generator;
     public SimplexNoiseGenerator simplex_generator;
 
-    public NoiseManager(int seed) {
+    public NoiseManager(long seed) {
         perlin_seed = seed;
         simplex_seed = seed;
         perlin_generator = new PerlinNoiseGenerator(seed);
@@ -27,13 +27,13 @@ public class NoiseManager implements Serializable {
         return simplex_generator;
     }
 
-    public int getSeed(NoiseType type) {
+    public long getSeed(NoiseType type) {
         if (type == NoiseType.PERLIN) return perlin_seed;
         if (type == NoiseType.SIMPLEX) return simplex_seed;
         return 0;
     }
 
-    public boolean setSeed(NoiseType type, int seed) {
+    public boolean setSeed(NoiseType type, long seed) {
         try {
             if (type == NoiseType.PERLIN) {
                 perlin_seed = seed;
