@@ -40,7 +40,7 @@ public class ExprSeed extends SimpleExpression<Long> {
 
     @Override
     public String toString(Event event, boolean b) {
-        return "Perlin seed expression";
+        return "Generator Seed";
     }
 
     @Override
