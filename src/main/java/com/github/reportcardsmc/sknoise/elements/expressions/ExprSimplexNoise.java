@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 public class ExprSimplexNoise extends SimpleExpression<Double> {
 
     static {
-        String[] patterns = {"[sknoise] simplex noise [at] [x ]%number%[, ][[y ]%-number%[, ][[z ]%-number%]] [(1¦with octaves %-integer%[,] frequency %-number%[,] and amplitude %-number%)]",
+        String[] patterns = {"[sknoise] simplex noise [at] [x] %number%[, ][[y] %-number%[, ][[z] %-number%]] [(1¦with octaves %-integer%[,] frequency %-number%[,] and amplitude %-number%)]",
                 "[sknoise] simplex noise [at] %-location% [(1¦with octaves %-integer%[,] frequency %-number%[,] [and] amplitude %-number%)]"};
         Skript.registerExpression(ExprSimplexNoise.class, Double.class, ExpressionType.COMBINED, patterns);
     }
