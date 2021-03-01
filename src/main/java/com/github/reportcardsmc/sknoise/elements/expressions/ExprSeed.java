@@ -13,19 +13,19 @@ import com.github.reportcardsmc.sknoise.utilities.NoiseManager;
 import com.github.reportcardsmc.sknoise.utilities.NoiseType;
 import org.bukkit.event.Event;
 
-public class ExprSeed extends SimpleExpression<Number> {
+public class ExprSeed extends SimpleExpression<Long> {
 
     static {
         String[] patterns = {"perlin [noise] seed", "simplex [noise] seed"};
-        Skript.registerExpression(ExprSeed.class, Number.class, ExpressionType.COMBINED, patterns);
+        Skript.registerExpression(ExprSeed.class, Long.class, ExpressionType.COMBINED, patterns);
     }
     private NoiseManager noiseManager = SkNoise.instance.getNoiseManager();
     private NoiseType type;
 
     @Override
-    protected Number[] get(Event event) {
-        Number number = noiseManager.getSeed(type);
-        return new Number[]{number};
+    protected Long[] get(Event event) {
+        long number = noiseManager.getSeed(type);
+        return new Long[]{number};
     }
 
     @Override
@@ -34,8 +34,8 @@ public class ExprSeed extends SimpleExpression<Number> {
     }
 
     @Override
-    public Class<? extends Number> getReturnType() {
-        return Number.class;
+    public Class<? extends Long> getReturnType() {
+        return Long.class;
     }
 
     @Override
@@ -53,21 +53,21 @@ public class ExprSeed extends SimpleExpression<Number> {
 
     @Override
     public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-        Number seed = noiseManager.getSeed(type);
-        Number setSeed;
-        Integer intSeed;
+        long seed = noiseManager.getSeed(type);
+        long setSeed;
+        long intSeed;
         try {
-            setSeed = (Number) delta[0];
-            intSeed = setSeed.intValue();
+            setSeed = (long) delta[0];
+            intSeed = setSeed;
         } catch (Exception ex) {
             return;
         }
         if (mode == Changer.ChangeMode.SET) {
             noiseManager.setSeed(type, intSeed);
         } else if (mode == Changer.ChangeMode.ADD) {
-            noiseManager.setSeed(type,  seed.intValue() + (intSeed));
+            noiseManager.setSeed(type,  seed + (intSeed));
         } else if (mode == Changer.ChangeMode.REMOVE) {
-            noiseManager.setSeed(type, seed.intValue() - (intSeed));
+            noiseManager.setSeed(type, seed - (intSeed));
         } else if (mode == Changer.ChangeMode.RESET) {
             noiseManager.setSeed(type, 0);
         }
