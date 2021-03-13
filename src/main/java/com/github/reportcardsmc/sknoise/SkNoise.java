@@ -3,6 +3,7 @@ package com.github.reportcardsmc.sknoise;
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import com.github.reportcardsmc.sknoise.utilities.NoiseManager;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,12 +20,14 @@ public final class SkNoise extends JavaPlugin {
     private static NoiseManager noiseManager;
     private static SkriptAddon addon;
     private static Boolean loaded = false;
+    private static Metrics metrics;
+    private int pluginID = 10639;
 //    NoiseManager noiseManager;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
-        maxList.put("start", 5);
+        maxList.put("start", 7);
 
         // Skript Registration
         log("&eAttempting to register addon", "start");
@@ -41,6 +44,11 @@ public final class SkNoise extends JavaPlugin {
             }
         }
         log("&aLoaded skript classes", "start");
+
+        log("&eStarting Metrics", "start");
+        metrics = new Metrics(this, pluginID);
+        log("&aStarted Metrics", "start");
+
 
         log("&fPlugin loaded", "start");
 
