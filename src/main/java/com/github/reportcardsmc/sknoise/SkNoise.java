@@ -47,7 +47,7 @@ public final class SkNoise extends JavaPlugin {
 
         log("&eStarting Metrics", "start");
         metrics = new Metrics(this, pluginID);
-        log("&aStarted Metrics", "start");
+        log("&aStarted Metrics (Plugin ID: " + pluginID + ")", "start");
 
 
         log("&fPlugin loaded", "start");

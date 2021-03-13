@@ -17,8 +17,10 @@ import javax.annotation.Nullable;
 public class ExprPerlinNoise extends SimpleExpression<Double> {
 
     static {
-        String[] patterns = {"[sknoise] perlin noise [at] [x] %number%[, ][[y] %number%[, ][[z] %number%]] [(1¦with octaves %-integer%[,] frequency %-number%[,] [and] amplitude %-number%)]",
-                "[sknoise] perlin noise [at] %location% [(1¦with octaves %-integer%[,] frequency %-number%[,] [and] amplitude %-number%)]"};
+        String[] patterns = {
+                "[sknoise] perlin [noise] at [x] %number%[,] [[y] %-number%(,|[,] and) [[z] %-number%]] [(1¦with octaves %-integer%[,] frequency %-number%(,|[,] and) amplitude %-number%)]",
+                "[sknoise] perlin [noise] at [(loc|location)] %location% [(1¦with octaves %-integer%[,] frequency %-number%(,|[,] and) amplitude %-number%)]"
+        };
         Skript.registerExpression(ExprPerlinNoise.class, Double.class, ExpressionType.COMBINED, patterns);
     }
 
