@@ -6,7 +6,7 @@
 
     <groupId>ReportCards</groupId>
     <artifactId>skNoise</artifactId>
-    <version>0.1.3</version>
+    <version>0.1.5</version>
     <packaging>jar</packaging>
 
     <name>SKNoise</name>
@@ -37,7 +37,7 @@
                         <relocation>
                             <pattern>org.bstats</pattern>
                             <!-- Replace this with your package! -->
-                            <shadedPattern>your.package</shadedPattern>
+                            <shadedPattern>com.github.reportcardsmc.sknoise</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
@@ -47,22 +47,6 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
