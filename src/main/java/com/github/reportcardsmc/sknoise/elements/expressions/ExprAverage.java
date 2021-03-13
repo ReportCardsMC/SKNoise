@@ -8,6 +8,8 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import org.bukkit.event.Event;
 
+import java.util.Arrays;
+
 public class ExprAverage extends SimpleExpression<Number> {
 
     static {
@@ -20,7 +22,7 @@ public class ExprAverage extends SimpleExpression<Number> {
     protected Number[] get(Event event) {
         Number[] numbersToCheck = numbers.getArray(event);
         Number result;
-        Double sum = 0D;
+        double sum = 0D;
         for (Number n : numbersToCheck) {
             sum += n.doubleValue();
         }
