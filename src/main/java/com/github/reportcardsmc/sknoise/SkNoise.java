@@ -55,19 +55,7 @@ public final class SkNoise extends JavaPlugin {
         instance = null;
     }
 
-    public SkNoise getInstance() {
-        return instance;
-    }
-
-    public SkriptAddon getAddon() {
-        return addon;
-    }
-
     public NoiseManager getNoiseManager() {
-        return noiseManager;
-    }
-
-    public static NoiseManager getStaticNM() {
         return noiseManager;
     }
 

@@ -11,7 +11,6 @@ import com.github.reportcardsmc.sknoise.utilities.NoiseManager;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
 import org.bukkit.util.noise.PerlinNoiseGenerator;
-import org.bukkit.util.noise.SimplexNoiseGenerator;
 
 import javax.annotation.Nullable;
 
