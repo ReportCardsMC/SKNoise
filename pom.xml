@@ -6,7 +6,7 @@
 
     <groupId>ReportCards</groupId>
     <artifactId>skNoise</artifactId>
-    <version>0.1.5</version>
+    <version>0.1.6</version>
     <packaging>jar</packaging>
 
     <name>SKNoise</name>
@@ -37,7 +37,7 @@
                         <relocation>
                             <pattern>org.bstats</pattern>
                             <!-- Replace this with your package! -->
-                            <shadedPattern>com.github.reportcardsmc.sknoise</shadedPattern>
+                            <shadedPattern>com.github.reportcardsmc.sknoise.bstats</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>

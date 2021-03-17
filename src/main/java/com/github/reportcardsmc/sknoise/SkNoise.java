@@ -20,14 +20,12 @@ public final class SkNoise extends JavaPlugin {
     private static NoiseManager noiseManager;
     private static SkriptAddon addon;
     private static Boolean loaded = false;
-    private static Metrics metrics;
-    private int pluginID = 10639;
 //    NoiseManager noiseManager;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
-        maxList.put("start", 7);
+        maxList.put("start", 5);
 
         // Skript Registration
         log("&eAttempting to register addon", "start");
@@ -44,10 +42,6 @@ public final class SkNoise extends JavaPlugin {
             }
         }
         log("&aLoaded skript classes", "start");
-
-        log("&eStarting Metrics", "start");
-        metrics = new Metrics(this, pluginID);
-        log("&aStarted Metrics (Plugin ID: " + pluginID + ")", "start");
 
 
         log("&fPlugin loaded", "start");
