@@ -2,6 +2,7 @@ package com.github.reportcardsmc.sknoise;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
+import com.github.reportcardsmc.sknoise.bstats.bStatsHandler;
 import com.github.reportcardsmc.sknoise.utilities.NoiseManager;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
@@ -20,6 +21,7 @@ public final class SkNoise extends JavaPlugin {
     private static NoiseManager noiseManager;
     private static SkriptAddon addon;
     private static Boolean loaded = false;
+    public static bStatsHandler bStats;
 //    NoiseManager noiseManager;
 
     @Override
@@ -50,6 +52,8 @@ public final class SkNoise extends JavaPlugin {
         instance = this;
         noiseManager = new NoiseManager(0);
         loaded = true;
+
+        bStats = new bStatsHandler();
     }
 
     @Override
