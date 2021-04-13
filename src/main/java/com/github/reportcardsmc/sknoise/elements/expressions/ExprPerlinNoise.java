@@ -17,7 +17,7 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
 
     static {
         String[] patterns = {
-                "[sknoise] perlin [noise] at [x] %number%[,] [[y] %-number%[(,|[,] and) [z] %-number%]] [(1¦with octaves %-double%[,] frequency %-number%(,|[,] and) amplitude %-number%)]",
+                "[sknoise] perlin [noise] at [x] %number%[,] [[y] %-number%[(,|[,] and) [z] %-number%]] [(1¦with octaves %-number%[,] frequency %-number%(,|[,] and) amplitude %-number%)]",
                 "[sknoise] perlin [noise] at (loc|location) %location% [(1¦with octaves %-integer%[,] frequency %-number%(,|[,] and) amplitude %-number%)]",
                 "[sknoise] normalized perlin [noise] at [x] %number%[,] [[y] %-number%[(,|[,] and) [z] %-number%]] [(1¦with octaves %-double%[,] frequency %-number%(,|[,] and) amplitude %-number%)]",
                 "[sknoise] normalized perlin [noise] at (loc|location) %location% [(1¦with octaves %-integer%[,] frequency %-number%(,|[,] and) amplitude %-number%)]"
@@ -29,7 +29,7 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
     private Expression<Number> yLoc;
     private Expression<Number> zLoc;
     private Expression<Location> location;
-    private Expression<Double> octaves;
+    private Expression<Number> octaves;
     private Expression<Number> frequency;
     private Expression<Number> amplitude;
     private Boolean normalized = false;
@@ -69,7 +69,7 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
             this.normalized = true;
         }
         if (parseResult.mark == 1) {
-            this.octaves = (Expression<Double>) expressions[expressions.length - 3];
+            this.octaves = (Expression<Number>) expressions[expressions.length - 3];
             this.frequency = (Expression<Number>) expressions[expressions.length - 2];
             this.amplitude = (Expression<Number>) expressions[expressions.length - 1];
         }
@@ -99,7 +99,12 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
             }
         }
         if (octaves != null) {
-            o = wrap((long) Math.floor(octaves.getSingle(event)));
+            try{
+                o = wrap((long) Math.floor((Double) octaves.getSingle(event)));
+
+            } catch (NullPointerException ignored) {
+                o = 1;
+            }
             f = frequency.getSingle(event).doubleValue();
             a = amplitude.getSingle(event).doubleValue();
             if (o == null || f == null || a == null) return null;

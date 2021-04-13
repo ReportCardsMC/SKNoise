@@ -8,17 +8,18 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import com.github.reportcardsmc.sknoise.SkNoise;
 import com.github.reportcardsmc.sknoise.utilities.NoiseManager;
+import com.sun.istack.internal.Nullable;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
-import org.bukkit.util.noise.SimplexNoiseGenerator;
+import org.bukkit.util.noise.PerlinNoiseGenerator;
 
 public class ExprSimplexNoise extends SimpleExpression<Double> {
 
     static {
         String[] patterns = {
-                "[sknoise] simplex [noise] at [x] %number%[,] [[y] %-number%[(,|[,] and) [z] %-number%]] [(1¦with octaves %-integer%[,] frequency %-number%(,|[,] and) amplitude %-number%)]",
+                "[sknoise] simplex [noise] at [x] %number%[,] [[y] %-number%[(,|[,] and) [z] %-number%]] [(1¦with octaves %-number%[,] frequency %-number%(,|[,] and) amplitude %-number%)]",
                 "[sknoise] simplex [noise] at (loc|location) %location% [(1¦with octaves %-integer%[,] frequency %-number%(,|[,] and) amplitude %-number%)]",
-                "[sknoise] normalized simplex [noise] at [x] %number%[,] [[y] %-number%[(,|[,] and) [z] %-number%]] [(1¦with octaves %-integer%[,] frequency %-number%(,|[,] and) amplitude %-number%)]",
+                "[sknoise] normalized simplex [noise] at [x] %number%[,] [[y] %-number%[(,|[,] and) [z] %-number%]] [(1¦with octaves %-double%[,] frequency %-number%(,|[,] and) amplitude %-number%)]",
                 "[sknoise] normalized simplex [noise] at (loc|location) %location% [(1¦with octaves %-integer%[,] frequency %-number%(,|[,] and) amplitude %-number%)]"
         };
         Skript.registerExpression(ExprSimplexNoise.class, Double.class, ExpressionType.COMBINED, patterns);
@@ -28,7 +29,7 @@ public class ExprSimplexNoise extends SimpleExpression<Double> {
     private Expression<Number> yLoc;
     private Expression<Number> zLoc;
     private Expression<Location> location;
-    private Expression<Integer> octaves;
+    private Expression<Number> octaves;
     private Expression<Number> frequency;
     private Expression<Number> amplitude;
     private Boolean normalized = false;
@@ -46,7 +47,7 @@ public class ExprSimplexNoise extends SimpleExpression<Double> {
 
     @Override
     public String toString(Event event, boolean b) {
-        return "Simplex Expression";
+        return "PERLIN WOAH";
     }
 
     @SuppressWarnings("unchecked")
@@ -68,7 +69,7 @@ public class ExprSimplexNoise extends SimpleExpression<Double> {
             this.normalized = true;
         }
         if (parseResult.mark == 1) {
-            this.octaves = (Expression<Integer>) expressions[expressions.length - 3];
+            this.octaves = (Expression<Number>) expressions[expressions.length - 3];
             this.frequency = (Expression<Number>) expressions[expressions.length - 2];
             this.amplitude = (Expression<Number>) expressions[expressions.length - 1];
         }
@@ -76,6 +77,7 @@ public class ExprSimplexNoise extends SimpleExpression<Double> {
     }
 
     @Override
+    @Nullable
     protected Double[] get(Event event) {
         NoiseManager noiseManager = SkNoise.instance.getNoiseManager();
         Number x = null, y = null, z = null;
@@ -97,14 +99,19 @@ public class ExprSimplexNoise extends SimpleExpression<Double> {
             }
         }
         if (octaves != null) {
-            o = octaves.getSingle(event);
+            try{
+                o = wrap((long) Math.floor((Double) octaves.getSingle(event)));
+
+            } catch (NullPointerException ignored) {
+                o = 1;
+            }
             f = frequency.getSingle(event).doubleValue();
             a = amplitude.getSingle(event).doubleValue();
             if (o == null || f == null || a == null) return null;
         }
 
         Double noise = null;
-        SimplexNoiseGenerator simp = noiseManager.getSimplex();
+        PerlinNoiseGenerator simp = noiseManager.getSimplex();
         if (y == null && o == null) noise = simp.noise(x.doubleValue(), 1, 1, 1, this.normalized);
         if (z == null && o == null) noise = simp.noise(x.doubleValue(), y.doubleValue(), 1, 1, 1, this.normalized);
         if (z != null && o == null) noise = simp.noise(x.doubleValue(), y.doubleValue(), z.doubleValue(), 1, 1, 1, this.normalized);
@@ -114,5 +121,10 @@ public class ExprSimplexNoise extends SimpleExpression<Double> {
         return new Double[]{noise};
     }
 
+    private long bitMax = 2147483647;
+    private Integer wrap(long value) {
+        return Math.toIntExact(Math.floorMod(value, bitMax * 2) - bitMax);
+    }
 
 }
+
