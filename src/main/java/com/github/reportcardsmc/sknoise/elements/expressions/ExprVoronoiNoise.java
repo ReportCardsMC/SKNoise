@@ -11,16 +11,13 @@ import com.github.reportcardsmc.sknoise.utilities.Cellular;
 import com.github.reportcardsmc.sknoise.utilities.NoiseManager;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
-import org.bukkit.util.noise.PerlinNoiseGenerator;
-
-import javax.annotation.Nullable;
 
 public class ExprVoronoiNoise extends SimpleExpression<Double> {
 
     static {
         String[] patterns = {
-                "[sknoise] voronoi [noise] at [x] %number%[,] [[y] %-number%[(,|[,] and) [z] %-number%]]",
-                "[sknoise] voronoi [noise] at (loc|location) %location%"
+                "[sknoise] voronoi [noise] at [x] %number%[,] [[y] %-number%[(,|[,] and) [z] %-number%]] [(1¦with cell values)]",
+                "[sknoise] voronoi [noise] at (loc|location) %location% [(1¦with cell values)]"
         };
         Skript.registerExpression(ExprVoronoiNoise.class, Double.class, ExpressionType.COMBINED, patterns);
     }
@@ -29,6 +26,8 @@ public class ExprVoronoiNoise extends SimpleExpression<Double> {
     private Expression<Number> yLoc;
     private Expression<Number> zLoc;
     private Expression<Location> location;
+    private boolean returnCellValue;
+
 
 
     @Override
@@ -62,11 +61,14 @@ public class ExprVoronoiNoise extends SimpleExpression<Double> {
         } else if (i == 3) {
             this.location = (Expression<Location>) expressions[0];
         }
+        returnCellValue = false;
+        if (parseResult.mark == 1) {
+            returnCellValue = true;
+        }
         return true;
     }
 
     @Override
-    @Nullable
     protected Double[] get(Event event) {
         NoiseManager noiseManager = SkNoise.instance.getNoiseManager();
         Number x = null, y = null, z = null;
@@ -90,6 +92,8 @@ public class ExprVoronoiNoise extends SimpleExpression<Double> {
 
         Double noise = null;
         Cellular voronoi = noiseManager.getCellular();
+        if (returnCellValue) voronoi.setCellularReturnType(0);
+        if (!returnCellValue) voronoi.setCellularReturnType(2);
         if (y == null && o == null) noise = voronoi.getNoise(x.doubleValue(), 0);
         if (z == null && o == null) noise = voronoi.getNoise(x.doubleValue(), y.doubleValue());
         if (z != null && o == null) noise = voronoi.getNoise(x.doubleValue(), y.doubleValue(), z.doubleValue());

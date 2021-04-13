@@ -12,8 +12,6 @@ import org.bukkit.Location;
 import org.bukkit.event.Event;
 import org.bukkit.util.noise.SimplexNoiseGenerator;
 
-import javax.annotation.Nullable;
-
 public class ExprSimplexNoise extends SimpleExpression<Double> {
 
     static {
@@ -78,7 +76,6 @@ public class ExprSimplexNoise extends SimpleExpression<Double> {
     }
 
     @Override
-    @Nullable
     protected Double[] get(Event event) {
         NoiseManager noiseManager = SkNoise.instance.getNoiseManager();
         Number x = null, y = null, z = null;

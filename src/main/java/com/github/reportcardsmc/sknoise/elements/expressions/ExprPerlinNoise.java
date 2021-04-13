@@ -8,19 +8,18 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import com.github.reportcardsmc.sknoise.SkNoise;
 import com.github.reportcardsmc.sknoise.utilities.NoiseManager;
+import com.sun.istack.internal.Nullable;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
 import org.bukkit.util.noise.PerlinNoiseGenerator;
-
-import javax.annotation.Nullable;
 
 public class ExprPerlinNoise extends SimpleExpression<Double> {
 
     static {
         String[] patterns = {
-                "[sknoise] perlin [noise] at [x] %number%[,] [[y] %-number%[(,|[,] and) [z] %-number%]] [(1¦with octaves %-integer%[,] frequency %-number%(,|[,] and) amplitude %-number%)]",
+                "[sknoise] perlin [noise] at [x] %number%[,] [[y] %-number%[(,|[,] and) [z] %-number%]] [(1¦with octaves %-double%[,] frequency %-number%(,|[,] and) amplitude %-number%)]",
                 "[sknoise] perlin [noise] at (loc|location) %location% [(1¦with octaves %-integer%[,] frequency %-number%(,|[,] and) amplitude %-number%)]",
-                "[sknoise] normalized perlin [noise] at [x] %number%[,] [[y] %-number%[(,|[,] and) [z] %-number%]] [(1¦with octaves %-integer%[,] frequency %-number%(,|[,] and) amplitude %-number%)]",
+                "[sknoise] normalized perlin [noise] at [x] %number%[,] [[y] %-number%[(,|[,] and) [z] %-number%]] [(1¦with octaves %-double%[,] frequency %-number%(,|[,] and) amplitude %-number%)]",
                 "[sknoise] normalized perlin [noise] at (loc|location) %location% [(1¦with octaves %-integer%[,] frequency %-number%(,|[,] and) amplitude %-number%)]"
         };
         Skript.registerExpression(ExprPerlinNoise.class, Double.class, ExpressionType.COMBINED, patterns);
@@ -30,7 +29,7 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
     private Expression<Number> yLoc;
     private Expression<Number> zLoc;
     private Expression<Location> location;
-    private Expression<Integer> octaves;
+    private Expression<Double> octaves;
     private Expression<Number> frequency;
     private Expression<Number> amplitude;
     private Boolean normalized = false;
@@ -70,7 +69,7 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
             this.normalized = true;
         }
         if (parseResult.mark == 1) {
-            this.octaves = (Expression<Integer>) expressions[expressions.length - 3];
+            this.octaves = (Expression<Double>) expressions[expressions.length - 3];
             this.frequency = (Expression<Number>) expressions[expressions.length - 2];
             this.amplitude = (Expression<Number>) expressions[expressions.length - 1];
         }
@@ -100,7 +99,7 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
             }
         }
         if (octaves != null) {
-            o = octaves.getSingle(event);
+            o = wrap((long) Math.floor(octaves.getSingle(event)));
             f = frequency.getSingle(event).doubleValue();
             a = amplitude.getSingle(event).doubleValue();
             if (o == null || f == null || a == null) return null;
@@ -117,5 +116,10 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
         return new Double[]{noise};
     }
 
+    private long bitMax = 2147483647;
+    private Integer wrap(long value) {
+        return Math.toIntExact(Math.floorMod(value, bitMax * 2) - bitMax);
+    }
 
 }
+

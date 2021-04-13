@@ -6,17 +6,14 @@
 
     <groupId>ReportCards</groupId>
     <artifactId>skNoise</artifactId>
-    <version>0.1.6</version>
+    <version>0.1.8</version>
     <packaging>jar</packaging>
-
     <name>SKNoise</name>
-
     <description>Implement noise generator functions into skript!</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
     <build>
         <plugins>
             <plugin>
@@ -28,28 +25,7 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <relocations>
-                        <relocation>
-                            <pattern>org.bstats</pattern>
-                            <!-- Replace this with your package! -->
-                            <shadedPattern>com.github.reportcardsmc.sknoise.bstats</shadedPattern>
-                        </relocation>
-                    </relocations>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+
         </plugins>
         <resources>
             <resource>
@@ -58,7 +34,6 @@
             </resource>
         </resources>
     </build>
-
     <repositories>
         <repository>
             <id>jitpack.io</id>
@@ -80,10 +55,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.bstats</groupId>
-            <artifactId>bstats-bukkit</artifactId>
-            <version>2.2.1</version>
-            <scope>compile</scope>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>13.0</version>
         </dependency>
         <dependency>
             <groupId>com.destroystokyo.paper</groupId>

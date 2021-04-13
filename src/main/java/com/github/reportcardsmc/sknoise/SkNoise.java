@@ -4,7 +4,6 @@ import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import com.github.reportcardsmc.sknoise.bstats.bStatsHandler;
 import com.github.reportcardsmc.sknoise.utilities.NoiseManager;
-import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;

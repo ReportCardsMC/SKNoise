@@ -16,7 +16,7 @@ import org.bukkit.event.Event;
 public class ExprSeed extends SimpleExpression<Long> {
 
     static {
-        String[] patterns = {"perlin [noise] seed", "simplex [noise] seed"};
+        String[] patterns = {"perlin [noise] seed", "simplex [noise] seed", "voronoi [noise] seed"};
         Skript.registerExpression(ExprSeed.class, Long.class, ExpressionType.COMBINED, patterns);
     }
     private NoiseManager noiseManager = SkNoise.instance.getNoiseManager();
@@ -47,6 +47,7 @@ public class ExprSeed extends SimpleExpression<Long> {
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         if (i == 0) type = NoiseType.PERLIN;
         if (i == 1) type = NoiseType.SIMPLEX;
+        if (i == 2) type = NoiseType.CELLULAR;
         return true;
 
     }
