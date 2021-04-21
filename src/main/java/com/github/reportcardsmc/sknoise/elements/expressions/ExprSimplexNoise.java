@@ -8,10 +8,10 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import com.github.reportcardsmc.sknoise.SkNoise;
 import com.github.reportcardsmc.sknoise.utilities.NoiseManager;
-import com.sun.istack.internal.Nullable;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
 import org.bukkit.util.noise.PerlinNoiseGenerator;
+import org.jetbrains.annotations.Nullable;
 
 public class ExprSimplexNoise extends SimpleExpression<Double> {
 
