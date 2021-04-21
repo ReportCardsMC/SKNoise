@@ -10,22 +10,14 @@ assignees: ''
 <!--
 !! Don't write inside of arrows! These are comments that only you can see !!
 -->
-**Is your feature request related to a problem? Please describe.**
+**Feature Title**
 <!--
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+The title of your feature! A general summary of it
 -->
 
-**Describe the solution you'd like**
+**Feature Description**
 <!--
-A clear and concise description of what you want to happen.
+The details of your feature! What should it add/change? Why change that? And how is it useful?
 -->
 
-**Describe alternatives you've considered**
-<!--
-A clear and concise description of any alternative solutions or features you've considered.
--->
-
-**Additional context**
-<!--
-Add any other context or screenshots about the feature request here.
--->
+**REACT WITH A 👍 OR 👎**
