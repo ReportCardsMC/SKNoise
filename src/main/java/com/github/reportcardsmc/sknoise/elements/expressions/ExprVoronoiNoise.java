@@ -95,10 +95,10 @@ public class ExprVoronoiNoise extends SimpleExpression<Double> {
         Double noise = null;
         Cellular voronoi = noiseManager.getCellular();
         if (returnCellValue) voronoi.setCellularReturnType(0);
-        if (!returnCellValue) voronoi.setCellularReturnType(2);
-        if (y == null && o == null) noise = voronoi.getNoise(x.doubleValue(), 0);
-        if (z == null && o == null) noise = voronoi.getNoise(x.doubleValue(), y.doubleValue());
-        if (z != null && o == null) noise = voronoi.getNoise(x.doubleValue(), y.doubleValue(), z.doubleValue());
+        else if (!returnCellValue) voronoi.setCellularReturnType(2);
+        else if (y == null && o == null) noise = voronoi.getNoise(x.doubleValue(), 0);
+        else if (z == null && o == null) noise = voronoi.getNoise(x.doubleValue(), y.doubleValue());
+        else if (z != null && o == null) noise = voronoi.getNoise(x.doubleValue(), y.doubleValue(), z.doubleValue());
         return new Double[]{noise};
     }
 

@@ -113,11 +113,11 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
         Double noise = null;
         PerlinNoiseGenerator perl = noiseManager.getPerlin();
         if (y == null && o == null) noise = perl.noise(x.doubleValue(), 1, 1, 1, this.normalized);
-        if (z == null && o == null) noise = perl.noise(x.doubleValue(), y.doubleValue(), 1, 1, 1, this.normalized);
-        if (z != null && o == null) noise = perl.noise(x.doubleValue(), y.doubleValue(), z.doubleValue(), 1, 1, 1, this.normalized);
-        if (y == null && o != null) noise = perl.noise(x.doubleValue(), 0, 0, o, f, a, this.normalized);
-        if (z == null && o != null) noise = perl.noise(x.doubleValue(), y.doubleValue(), 0, o, f, a, this.normalized);
-        if (z != null && o != null) noise = perl.noise(x.doubleValue(), y.doubleValue(), z.doubleValue(), o, f, a, this.normalized);
+        else if (z == null && o == null) noise = perl.noise(x.doubleValue(), y.doubleValue(), 1, 1, 1, this.normalized);
+        else if (z != null && o == null) noise = perl.noise(x.doubleValue(), y.doubleValue(), z.doubleValue(), 1, 1, 1, this.normalized);
+        else if (y == null && o != null) noise = perl.noise(x.doubleValue(), 0, 0, o, f, a, this.normalized);
+        else if (z == null && o != null) noise = perl.noise(x.doubleValue(), y.doubleValue(), 0, o, f, a, this.normalized);
+        else if (z != null && o != null) noise = perl.noise(x.doubleValue(), y.doubleValue(), z.doubleValue(), o, f, a, this.normalized);
         return new Double[]{noise};
     }
 
