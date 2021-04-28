@@ -11,6 +11,7 @@ import com.github.reportcardsmc.sknoise.utilities.NoiseManager;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
 import org.bukkit.util.noise.PerlinNoiseGenerator;
+import org.bukkit.util.noise.SimplexNoiseGenerator;
 import org.jetbrains.annotations.Nullable;
 
 public class ExprSimplexNoise extends SimpleExpression<Double> {
@@ -100,8 +101,13 @@ public class ExprSimplexNoise extends SimpleExpression<Double> {
         }
         if (octaves != null) {
             try{
-                o = wrap((long) Math.floor((Double) octaves.getSingle(event)));
+                Double ogOctaves = octaves.getSingle(event).doubleValue();
 
+                if (ogOctaves > 8) o = 8;
+                else if (ogOctaves < 1) o = 1;
+                else {
+                    o = new Double(Math.floor(ogOctaves.intValue())).intValue();
+                }
             } catch (NullPointerException ignored) {
                 o = 1;
             }
@@ -111,7 +117,7 @@ public class ExprSimplexNoise extends SimpleExpression<Double> {
         }
 
         Double noise = null;
-        PerlinNoiseGenerator simp = noiseManager.getSimplex();
+        SimplexNoiseGenerator simp = noiseManager.getSimplex();
         if (y == null && o == null) noise = simp.noise(x.doubleValue(), 1, 1, 1, this.normalized);
         else if (z == null && o == null) noise = simp.noise(x.doubleValue(), y.doubleValue(), 1, 1, 1, this.normalized);
         else if (z != null && o == null) noise = simp.noise(x.doubleValue(), y.doubleValue(), z.doubleValue(), 1, 1, 1, this.normalized);
