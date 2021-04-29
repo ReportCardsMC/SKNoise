@@ -12,17 +12,13 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public final class SkNoise extends JavaPlugin {
-
     private final HashMap<String, Integer> logList = new HashMap<>();
     private final HashMap<String, Integer> maxList = new HashMap<>();
-
     public static SkNoise instance;
     private static NoiseManager noiseManager;
     private static SkriptAddon addon;
     private static boolean loaded = false;
     public static bStatsHandler bStats;
-//    NoiseManager noiseManager;
-
     @Override
     public void onEnable() {
         // Plugin startup logic

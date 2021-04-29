@@ -8,8 +8,6 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import org.bukkit.event.Event;
 
-import java.util.Arrays;
-
 public class ExprAverage extends SimpleExpression<Number> {
 
     static {
