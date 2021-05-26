@@ -49,7 +49,6 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
     public String toString(Event event, boolean b) {
         return "PERLIN WOAH";
     }
-
     @SuppressWarnings("unchecked")
     @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
