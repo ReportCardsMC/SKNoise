@@ -19,7 +19,8 @@ public class ExprSeed extends SimpleExpression<Long> {
         String[] patterns = {"perlin [noise] seed", "simplex [noise] seed", "voronoi [noise] seed"};
         Skript.registerExpression(ExprSeed.class, Long.class, ExpressionType.COMBINED, patterns);
     }
-    private NoiseManager noiseManager = SkNoise.instance.getNoiseManager();
+
+    private final NoiseManager noiseManager = SkNoise.instance.getNoiseManager();
     private NoiseType type;
 
     @Override
@@ -66,7 +67,7 @@ public class ExprSeed extends SimpleExpression<Long> {
         if (mode == Changer.ChangeMode.SET) {
             noiseManager.setSeed(type, intSeed);
         } else if (mode == Changer.ChangeMode.ADD) {
-            noiseManager.setSeed(type,  seed + (intSeed));
+            noiseManager.setSeed(type, seed + (intSeed));
         } else if (mode == Changer.ChangeMode.REMOVE) {
             noiseManager.setSeed(type, seed - (intSeed));
         } else if (mode == Changer.ChangeMode.RESET) {
