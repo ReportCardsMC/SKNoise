@@ -21,7 +21,6 @@ public final class SkNoise extends JavaPlugin {
     private static SkriptAddon addon;
     private static Boolean loaded = false;
     public static bStatsHandler bStats;
-//    NoiseManager noiseManager;
 
     @Override
     public void onEnable() {
