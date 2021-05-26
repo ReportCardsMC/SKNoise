@@ -100,8 +100,13 @@ public class ExprPerlinNoise extends SimpleExpression<Double> {
         }
         if (octaves != null) {
             try{
-                o = wrap((long) Math.floor((Double) octaves.getSingle(event)));
+                Double ogOctaves = octaves.getSingle(event).doubleValue();
 
+                if (ogOctaves > 8) o = 8;
+                else if (ogOctaves < 1) o = 1;
+                else {
+                    o = new Double(Math.floor(ogOctaves.intValue())).intValue();
+                }
             } catch (NullPointerException ignored) {
                 o = 1;
             }
