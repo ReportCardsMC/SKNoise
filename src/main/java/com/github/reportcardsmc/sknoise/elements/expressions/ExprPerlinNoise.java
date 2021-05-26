@@ -1,6 +1,10 @@
 package com.github.reportcardsmc.sknoise.elements.expressions;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -13,6 +17,10 @@ import org.bukkit.event.Event;
 import org.bukkit.util.noise.PerlinNoiseGenerator;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Perlin Noise")
+@Description("Get the perlin noise value at a certain location")
+@Examples("perlin noise at location {_loc}")
+@Since("0.1")
 public class ExprPerlinNoise extends SimpleExpression<Double> {
 
     static {

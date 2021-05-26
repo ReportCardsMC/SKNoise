@@ -2,6 +2,10 @@ package com.github.reportcardsmc.sknoise.elements.expressions;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -13,6 +17,10 @@ import com.github.reportcardsmc.sknoise.utilities.NoiseManager;
 import com.github.reportcardsmc.sknoise.utilities.NoiseType;
 import org.bukkit.event.Event;
 
+@Name("Noise Seed")
+@Description("Get/Set a seed of a noise generator")
+@Examples("set voronoi seed to 0")
+@Since("0.1")
 public class ExprSeed extends SimpleExpression<Long> {
 
     static {

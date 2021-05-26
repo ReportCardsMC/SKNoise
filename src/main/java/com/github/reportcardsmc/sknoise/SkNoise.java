@@ -28,6 +28,10 @@ public final class SkNoise extends JavaPlugin {
         log("&eAttempting to register addon", "start");
         if (addon == null) addon = Skript.registerAddon(this);
 
+        if (addon == null) {
+            Bukkit.getLogger().warning("Error registering addon SKNoise");
+            return;
+        }
         log("&aRegistered addon successfully", "start");
         log("&eAttempting to load addon classes", "start");
         if (loaded) {
