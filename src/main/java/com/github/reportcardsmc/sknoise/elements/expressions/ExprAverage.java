@@ -1,5 +1,4 @@
 package com.github.reportcardsmc.sknoise.elements.expressions;
-
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
@@ -9,7 +8,6 @@ import ch.njol.util.Kleenean;
 import org.bukkit.event.Event;
 
 import java.util.Arrays;
-
 public class ExprAverage extends SimpleExpression<Number> {
 
     static {
