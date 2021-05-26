@@ -127,10 +127,5 @@ public class ExprSimplexNoise extends SimpleExpression<Double> {
         return new Double[]{noise};
     }
 
-    private long bitMax = 2147483647;
-    private Integer wrap(long value) {
-        return Math.toIntExact(Math.floorMod(value, bitMax * 2) - bitMax);
-    }
-
 }
 
