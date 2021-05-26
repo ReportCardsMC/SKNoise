@@ -1,6 +1,10 @@
 package com.github.reportcardsmc.sknoise.elements.expressions;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -10,10 +14,13 @@ import com.github.reportcardsmc.sknoise.SkNoise;
 import com.github.reportcardsmc.sknoise.utilities.NoiseManager;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
-import org.bukkit.util.noise.PerlinNoiseGenerator;
 import org.bukkit.util.noise.SimplexNoiseGenerator;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Simplex Noise")
+@Description("Get the simplex noise value at a certain location")
+@Examples("simplex noise at 2, 2, 2")
+@Since("0.1")
 public class ExprSimplexNoise extends SimpleExpression<Double> {
 
     static {

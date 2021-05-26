@@ -2,6 +2,7 @@ package com.github.reportcardsmc.sknoise.bstats;
 
 import com.github.reportcardsmc.sknoise.SkNoise;
 import org.bukkit.Bukkit;
+
 import java.util.HashMap;
 import java.util.Map;
 

@@ -1,6 +1,10 @@
 package com.github.reportcardsmc.sknoise.elements.expressions;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -8,8 +12,10 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import org.bukkit.event.Event;
 
-import java.util.Arrays;
-
+@Name("Average")
+@Description("Get the average of a list of numbers")
+@Examples("average of 1, 2, 3")
+@Since("0.1")
 public class ExprAverage extends SimpleExpression<Number> {
 
     static {

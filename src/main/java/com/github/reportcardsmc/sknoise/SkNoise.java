@@ -12,16 +12,14 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public final class SkNoise extends JavaPlugin {
-
-    private final HashMap<String, Integer> logList = new HashMap<String, Integer>();
-    private final HashMap<String, Integer> maxList = new HashMap<String, Integer>();
-
+    private final HashMap<String, Integer> logList = new HashMap<>();
+    private final HashMap<String, Integer> maxList = new HashMap<>();
     public static SkNoise instance;
     private static NoiseManager noiseManager;
     private static SkriptAddon addon;
-    private static Boolean loaded = false;
+    private static boolean loaded = false;
     public static bStatsHandler bStats;
-
+  
     @Override
     public void onEnable() {
         // Plugin startup logic
@@ -31,9 +29,13 @@ public final class SkNoise extends JavaPlugin {
         log("&eAttempting to register addon", "start");
         if (addon == null) addon = Skript.registerAddon(this);
 
+        if (addon == null) {
+            Bukkit.getLogger().warning("Error registering addon SKNoise");
+            return;
+        }
         log("&aRegistered addon successfully", "start");
         log("&eAttempting to load addon classes", "start");
-        if (loaded == false) {
+        if (loaded) {
             try {
                 addon.loadClasses("com.github.reportcardsmc.sknoise", "elements");
             } catch (IOException e) {
@@ -58,21 +60,14 @@ public final class SkNoise extends JavaPlugin {
     public void onDisable() {
         instance = null;
     }
-
     public NoiseManager getNoiseManager() {
         return noiseManager;
     }
-
     private void log(String text, String id) {
-        String finalString;
         if (!logList.containsKey(id)) logList.put(id, 0);
-
-        Integer iteration = logList.get(id) + 1;
-        finalString = ChatColor.translateAlternateColorCodes('&', "&e[SkNoise] &f" + text + " &b[" + iteration + "/" + maxList.get(id) + "]");
-
+        int iteration = logList.get(id) + 1;
         logList.put(id, iteration);
-
-        Bukkit.getLogger().info(finalString);
+        Bukkit.getLogger().info(ChatColor.translateAlternateColorCodes('&', "&e[SkNoise] &f" + text + " &b[" + iteration + "/" + maxList.get(id) + "]"));
     }
 
 }
