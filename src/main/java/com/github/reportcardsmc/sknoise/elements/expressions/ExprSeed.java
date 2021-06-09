@@ -41,14 +41,22 @@ public class ExprSeed extends SimpleExpression<Long> {
 
     @Override
     public String toString(Event event, boolean b) {
-        return "Generator Seed";
+        return type.name() + " Seed Expression";
     }
 
     @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        if (i == 0) type = NoiseType.PERLIN;
-        if (i == 1) type = NoiseType.SIMPLEX;
-        if (i == 2) type = NoiseType.CELLULAR;
+        switch (i) {
+            case 0:
+                type = NoiseType.PERLIN;
+                break;
+            case 1:
+                type = NoiseType.SIMPLEX;
+                break;
+            case 2:
+                type = NoiseType.CELLULAR;
+                break;
+        }
         return true;
 
     }
@@ -64,14 +72,19 @@ public class ExprSeed extends SimpleExpression<Long> {
         } catch (Exception ex) {
             return;
         }
-        if (mode == Changer.ChangeMode.SET) {
-            noiseManager.setSeed(type, intSeed);
-        } else if (mode == Changer.ChangeMode.ADD) {
-            noiseManager.setSeed(type, seed + (intSeed));
-        } else if (mode == Changer.ChangeMode.REMOVE) {
-            noiseManager.setSeed(type, seed - (intSeed));
-        } else if (mode == Changer.ChangeMode.RESET) {
-            noiseManager.setSeed(type, 0);
+        switch (mode) {
+            case SET:
+                noiseManager.setSeed(type, intSeed);
+                break;
+            case ADD:
+                noiseManager.setSeed(type, seed + (intSeed));
+                break;
+            case REMOVE:
+                noiseManager.setSeed(type, seed - (intSeed));
+                break;
+            case RESET:
+                noiseManager.setSeed(type, 0);
+                break;
         }
     }
 
