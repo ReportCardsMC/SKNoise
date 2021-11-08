@@ -3,7 +3,6 @@ package com.github.reportcardsmc.sknoise;
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import com.github.reportcardsmc.sknoise.bstats.bStatsHandler;
-import com.github.reportcardsmc.sknoise.utilities.NoiseManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,7 +16,6 @@ public final class SkNoise extends JavaPlugin {
     private final HashMap<String, Integer> maxList = new HashMap<String, Integer>();
 
     public static SkNoise instance;
-    private static NoiseManager noiseManager;
     private static SkriptAddon addon;
     private static Boolean loaded = false;
     public static bStatsHandler bStats;
@@ -48,7 +46,6 @@ public final class SkNoise extends JavaPlugin {
 
         //Variable Setting
         instance = this;
-        noiseManager = new NoiseManager(0);
         loaded = true;
 
         bStats = new bStatsHandler();
@@ -57,10 +54,6 @@ public final class SkNoise extends JavaPlugin {
     @Override
     public void onDisable() {
         instance = null;
-    }
-
-    public NoiseManager getNoiseManager() {
-        return noiseManager;
     }
 
     private void log(String text, String id) {
