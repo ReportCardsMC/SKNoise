@@ -8,26 +8,26 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import com.github.reportcardsmc.sknoise.utilities.enums.CellularReturnType;
+import com.github.reportcardsmc.sknoise.utilities.enums.CellularDistanceFunction;
 import com.github.reportcardsmc.sknoise.utilities.enums.ValidGenerators;
 import com.github.reportcardsmc.sknoise.utilities.noise.NoiseGenerator;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-public class CellularReturnExpr extends SimpleExpression<CellularReturnType> {
+public class CellularDistanceExpr extends SimpleExpression<CellularDistanceFunction> {
 
     static {
-        Skript.registerExpression(CellularReturnExpr.class, CellularReturnType.class, ExpressionType.COMBINED, "[sknoise] cellular return type of %noisegenerator%");
+        Skript.registerExpression(CellularDistanceExpr.class, CellularDistanceFunction.class, ExpressionType.COMBINED, "[sknoise] cellular distance [function] of %noisegenerator%");
     }
 
     Expression<NoiseGenerator> noiseGeneratorExpression;
 
     @Override
     protected @Nullable
-    CellularReturnType[] get(Event e) {
+    CellularDistanceFunction[] get(Event e) {
         NoiseGenerator generator = noiseGeneratorExpression.getSingle(e);
         if (generator == null || !generator.noise.equals(ValidGenerators.CELLULAR)) return null;
-        return new CellularReturnType[]{generator.mCellularReturnType};
+        return new CellularDistanceFunction[]{generator.mCellularDistanceFunction};
     }
 
     @Override
@@ -36,13 +36,13 @@ public class CellularReturnExpr extends SimpleExpression<CellularReturnType> {
     }
 
     @Override
-    public Class<? extends CellularReturnType> getReturnType() {
-        return CellularReturnType.class;
+    public Class<? extends CellularDistanceFunction> getReturnType() {
+        return CellularDistanceFunction.class;
     }
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "Cellular Return type of generator: " + noiseGeneratorExpression.toString(e, debug);
+        return "Cellular Distance Function of generator: " + noiseGeneratorExpression.toString(e, debug);
     }
 
     @SuppressWarnings("unchecked")
@@ -55,18 +55,18 @@ public class CellularReturnExpr extends SimpleExpression<CellularReturnType> {
     @Override
     public @Nullable
     Class<?>[] acceptChange(Changer.ChangeMode mode) {
-        return (mode == Changer.ChangeMode.RESET || mode == Changer.ChangeMode.SET) ? CollectionUtils.array(CellularReturnType.class) : null;
+        return (mode == Changer.ChangeMode.RESET || mode == Changer.ChangeMode.SET) ? CollectionUtils.array(CellularDistanceFunction.class) : null;
     }
 
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
         NoiseGenerator generator = noiseGeneratorExpression.getSingle(e);
-        CellularReturnType type = (CellularReturnType) delta[0];
+        CellularDistanceFunction type = (CellularDistanceFunction) delta[0];
         if (generator == null || type == null || generator.noise != ValidGenerators.CELLULAR) return;
         if (mode == Changer.ChangeMode.SET) {
-            generator.SetCellularReturnType(type);
+            generator.SetCellularDistanceFunction(type);
         } else if (mode == Changer.ChangeMode.RESET) {
-            generator.SetCellularReturnType(CellularReturnType.Distance);
+            generator.SetCellularDistanceFunction(CellularDistanceFunction.EuclideanSq);
         }
     }
 }

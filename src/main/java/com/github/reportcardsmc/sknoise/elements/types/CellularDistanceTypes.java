@@ -6,7 +6,6 @@ import ch.njol.skript.classes.Parser;
 import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.registrations.Classes;
 import com.github.reportcardsmc.sknoise.utilities.enums.CellularDistanceFunction;
-import com.github.reportcardsmc.sknoise.utilities.enums.CellularReturnType;
 
 public class CellularDistanceTypes {
 
