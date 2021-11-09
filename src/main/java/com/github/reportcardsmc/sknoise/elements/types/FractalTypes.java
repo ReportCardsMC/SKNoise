@@ -14,7 +14,7 @@ public class FractalTypes {
         Classes.registerClass(new ClassInfo<>(FractalType.class, "fractaltype")
                 .user("fractal[ ]types?")
                 .name("fractal type")
-                .description("Type of a fractal")
+                .description("Type of a fractal. Valid: None, FBm, Ridged, PingPong, DomainWarpProgressive, DomainWarpIndependent")
                 .parser(new Parser<FractalType>() {
 
                     private final String[] types = new String[FractalType.values().length];

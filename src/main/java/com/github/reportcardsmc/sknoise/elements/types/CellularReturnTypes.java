@@ -14,7 +14,7 @@ public class CellularReturnTypes {
         Classes.registerClass(new ClassInfo<>(CellularReturnType.class, "cellularreturntype")
                 .user("cellular[ ]return[ ]types?")
                 .name("cellular return type")
-                .description("Type of a cellular return")
+                .description("Type of a cellular return. Valid: CellValue, Distance, Distance2, Distance2Add, Distance2Sub, Distance2Mul, Distance2Div")
                 .parser(new Parser<CellularReturnType>() {
 
                     private final String[] types = new String[CellularReturnType.values().length];

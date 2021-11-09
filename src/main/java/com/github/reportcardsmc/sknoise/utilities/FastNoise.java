@@ -80,7 +80,7 @@ public class FastNoise
 
     private float mFractalBounding = 1 / 1.75f;
 
-    private CellularDistanceFunction mCellularDistanceFunction = CellularDistanceFunction.EuclideanSq;
+    public CellularDistanceFunction mCellularDistanceFunction = CellularDistanceFunction.EuclideanSq;
     public CellularReturnType mCellularReturnType = CellularReturnType.Distance;
     private float mCellularJitterModifier = 1.0f;
 

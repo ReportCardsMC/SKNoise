@@ -13,7 +13,7 @@ public class GeneratorType {
         Classes.registerClass(new ClassInfo<>(ValidGenerators.class, "generatortype")
                 .user("generator[ ]types?")
                 .name("generator type")
-                .description("Type of a generator")
+                .description("Type of a generator. Valid: Perlin, Cellular, Simplex, Value")
                 .parser(new Parser<ValidGenerators>() {
 
                     private final String[] types = new String[ValidGenerators.values().length];
