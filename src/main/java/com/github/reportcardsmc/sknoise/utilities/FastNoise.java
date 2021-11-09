@@ -52,12 +52,7 @@ package com.github.reportcardsmc.sknoise.utilities;// MIT License
 // /*FNLfloat*/ float
 // /*FNLfloat*/ double
 
-import com.github.reportcardsmc.sknoise.utilities.enums.NoiseType;
-import com.github.reportcardsmc.sknoise.utilities.enums.RotationType3D;
-import com.github.reportcardsmc.sknoise.utilities.enums.FractalType;
-import com.github.reportcardsmc.sknoise.utilities.enums.CellularDistanceFunction;
-import com.github.reportcardsmc.sknoise.utilities.enums.CellularReturnType;
-import com.github.reportcardsmc.sknoise.utilities.enums.DomainWarpType;
+import com.github.reportcardsmc.sknoise.utilities.enums.*;
 
 public class FastNoise
 {
@@ -70,23 +65,23 @@ public class FastNoise
         DefaultOpenSimplex2
     };
 
-    private int mSeed = 1337;
-    private float mFrequency = 0.01f;
+    public int mSeed = 1337;
+    public float mFrequency = 0.036f;
     private NoiseType mNoiseType = NoiseType.OpenSimplex2;
     private RotationType3D mRotationType3D = RotationType3D.None;
     private TransformType3D mTransformType3D = TransformType3D.DefaultOpenSimplex2;
 
-    private FractalType mFractalType = FractalType.None;
-    private int mOctaves = 3;
-    private float mLacunarity = 2.0f;
-    private float mGain = 0.5f;
+    public FractalType mFractalType = FractalType.None;
+    public int mOctaves = 3;
+    public float mLacunarity = 2.0f;
+    public float mGain = 0.5f;
     private float mWeightedStrength = 0.0f;
     private float mPingPongStength = 2.0f;
 
     private float mFractalBounding = 1 / 1.75f;
 
     private CellularDistanceFunction mCellularDistanceFunction = CellularDistanceFunction.EuclideanSq;
-    private CellularReturnType mCellularReturnType = CellularReturnType.Distance;
+    public CellularReturnType mCellularReturnType = CellularReturnType.Distance;
     private float mCellularJitterModifier = 1.0f;
 
     private DomainWarpType mDomainWarpType = DomainWarpType.OpenSimplex2;

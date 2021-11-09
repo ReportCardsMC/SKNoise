@@ -4,16 +4,16 @@ import com.github.reportcardsmc.sknoise.utilities.enums.NoiseType;
 import com.github.reportcardsmc.sknoise.utilities.enums.ValidGenerators;
 
 public class Perlin extends NoiseGenerator {
-    Perlin(long seed) {
-        this.SetNoiseType(NoiseType.Perlin);
+    public Perlin(long seed) {
+        SetNoiseType(NoiseType.Perlin);
+        init();
         Seed(seed);
-        SetFractalOctaves(1);
         this.noise = ValidGenerators.PERLIN;
     }
-    Perlin() {
-        this.SetNoiseType(NoiseType.Perlin);
+    public Perlin() {
+        SetNoiseType(NoiseType.Perlin);
+        init();
         Seed(0);
-        SetFractalOctaves(1);
         this.noise = ValidGenerators.PERLIN;
     }
 }

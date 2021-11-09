@@ -4,16 +4,16 @@ import com.github.reportcardsmc.sknoise.utilities.enums.NoiseType;
 import com.github.reportcardsmc.sknoise.utilities.enums.ValidGenerators;
 
 public class Cellular extends NoiseGenerator {
-    Cellular(long seed) {
+    public Cellular(long seed) {
         SetNoiseType(NoiseType.Cellular);
+        init();
         Seed(seed);
-        SetFractalOctaves(1);
         this.noise = ValidGenerators.CELLULAR;
     }
-    Cellular() {
+    public Cellular() {
         SetNoiseType(NoiseType.Cellular);
+        init();
         Seed(0);
-        SetFractalOctaves(1);
         this.noise = ValidGenerators.CELLULAR;
     }
 }
