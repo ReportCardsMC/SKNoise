@@ -6,7 +6,7 @@
 
     <groupId>ReportCards</groupId>
     <artifactId>skNoise</artifactId>
-    <version>0.1.8</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
     <name>SKNoise</name>
     <description>Implement noise generator functions into skript!</description>

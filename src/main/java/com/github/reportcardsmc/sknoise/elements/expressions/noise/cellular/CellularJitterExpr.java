@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 public class CellularJitterExpr extends SimpleExpression<Number> {
 
     static {
-        Skript.registerExpression(CellularJitterExpr.class, Number.class, ExpressionType.COMBINED, "[sknoise] cellular jitter of %noisegenerator%");
+        Skript.registerExpression(CellularJitterExpr.class, Number.class, ExpressionType.COMBINED, "[sknoise] (cellular|voronoi) jitter of %noisegenerator%");
     }
 
     Expression<NoiseGenerator> generatorExpression;
