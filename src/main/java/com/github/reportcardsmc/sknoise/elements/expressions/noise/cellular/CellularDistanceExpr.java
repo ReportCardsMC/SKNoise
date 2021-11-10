@@ -2,6 +2,9 @@ package com.github.reportcardsmc.sknoise.elements.expressions.noise.cellular;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -14,6 +17,9 @@ import com.github.reportcardsmc.sknoise.utilities.noise.NoiseGenerator;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Cellular Distance Function")
+@Description("Get/Change the cellular distance function used in a cellular generator")
+@Examples("set cellular distance of {_gen} to Hybrid")
 public class CellularDistanceExpr extends SimpleExpression<CellularDistanceFunction> {
 
     static {

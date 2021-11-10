@@ -1,6 +1,9 @@
 package com.github.reportcardsmc.sknoise.elements.expressions.noise;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -13,6 +16,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
+@Name("New Generator")
+@Description("Create a new generator object")
+@Examples({"set {_gen} to new perlin generator with seed 69", "set {_gen} to new cellular generator"})
 public class NewGeneratorExpr extends SimpleExpression<NoiseGenerator> {
 
     static {

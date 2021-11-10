@@ -2,6 +2,9 @@ package com.github.reportcardsmc.sknoise.elements.expressions.noise;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -13,6 +16,9 @@ import com.github.reportcardsmc.sknoise.utilities.noise.NoiseGenerator;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Fractal Type of Generator")
+@Description("Get/Change the fractal type of a generator")
+@Examples({"set fractal type of {_gen} to Ridged", "reset fractal type of {_gen}"})
 public class FractalExpr extends SimpleExpression<FractalType> {
 
     static {
