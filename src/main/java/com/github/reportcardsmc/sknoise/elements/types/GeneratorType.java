@@ -7,13 +7,15 @@ import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.registrations.Classes;
 import com.github.reportcardsmc.sknoise.utilities.enums.ValidGenerators;
 
+import java.util.Objects;
+
 public class GeneratorType {
 
     static {
         Classes.registerClass(new ClassInfo<>(ValidGenerators.class, "generatortype")
                 .user("generator[ ]types?")
                 .name("generator type")
-                .description("Type of a generator. Valid: Perlin, Cellular, Simplex, Value")
+                .description("Type of a generator. Valid: Perlin, Cellular/Voronoi, Simplex, Value")
                 .parser(new Parser<ValidGenerators>() {
 
                     private final String[] types = new String[ValidGenerators.values().length];
@@ -27,7 +29,10 @@ public class GeneratorType {
                     @Override
                     public ValidGenerators parse(String s, ParseContext context) {
                         for (int i = 0; i < types.length; i++) {
-                            if (s.equalsIgnoreCase(types[i])) return ValidGenerators.values()[i];
+                            if (s.equalsIgnoreCase(types[i])) {
+                                if (Objects.equals(types[i], "VORONOI")) return ValidGenerators.CELLULAR;
+                                return ValidGenerators.values()[i];
+                            }
                         }
                         return null;
                     }

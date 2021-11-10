@@ -1,4 +1,4 @@
-package com.github.reportcardsmc.sknoise.elements.expressions;
+package com.github.reportcardsmc.sknoise.elements.expressions.noise;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer;
@@ -11,26 +11,27 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
+import com.github.reportcardsmc.sknoise.utilities.enums.FractalType;
 import com.github.reportcardsmc.sknoise.utilities.noise.NoiseGenerator;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Octave Count of Generator")
-@Description("Get/Change the octaves of a generator")
-@Examples({"set octave count of {_gen} to 4", "add 1 to octave count of {_gen}"})
-public class OctavesExpr extends SimpleExpression<Integer> {
+@Name("PingPong Strength of Generator")
+@Description("Get/Change the ping pong strength of a generator")
+@Examples({"set ping pong strength of {_gen} to 2", "add 0.5 to ping pong strength of {_gen}"})
+public class PingPongStrengthExpr extends SimpleExpression<Number> {
 
     static {
-        Skript.registerExpression(OctavesExpr.class, Integer.class, ExpressionType.COMBINED, "[sknoise] octave[s] [count] of %noisegenerator%");
+        Skript.registerExpression(PingPongStrengthExpr.class, Number.class, ExpressionType.COMBINED, "[sknoise] ping[ ]pong strength of %noisegenerator%");
     }
 
     Expression<NoiseGenerator> generatorExpression;
 
     @Override
     protected @Nullable
-    Integer[] get(Event e) {
-        if (generatorExpression.getSingle(e) == null) return null;
-        return new Integer[]{generatorExpression.getSingle(e).mOctaves};
+    Number[] get(Event e) {
+        if (generatorExpression.getSingle(e) == null || generatorExpression.getSingle(e).mFractalType != FractalType.PingPong) return null;
+        return new Number[]{generatorExpression.getSingle(e).mPingPongStength};
     }
 
     @Override
@@ -39,13 +40,13 @@ public class OctavesExpr extends SimpleExpression<Integer> {
     }
 
     @Override
-    public Class<? extends Integer> getReturnType() {
-        return Integer.class;
+    public Class<? extends Number> getReturnType() {
+        return Number.class;
     }
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "Octave Count of generator: " + generatorExpression.toString(e, debug);
+        return "Ping pong strength of generator: " + generatorExpression.toString(e, debug);
     }
 
     @SuppressWarnings("unchecked")
@@ -63,22 +64,21 @@ public class OctavesExpr extends SimpleExpression<Integer> {
 
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
-        Number number = (Number) delta[0];
+        Number num = (Number) delta[0];
         NoiseGenerator generator = generatorExpression.getSingle(e);
-        if (generator == null || number == null) return;
-        int num = number.intValue();
+        if (generator == null || num == null || generator.mFractalType != FractalType.PingPong) return;
         switch(mode) {
             case SET:
-                generator.SetFractalOctaves(num);
+                generator.SetFractalPingPongStrength(num.floatValue());
                 break;
             case RESET:
-                generator.SetFractalOctaves(1);
+                generator.SetFractalPingPongStrength(0.036f);
                 break;
             case ADD:
-                generator.SetFractalOctaves(generator.mOctaves+num);
+                generator.SetFractalPingPongStrength(generator.mPingPongStength + num.floatValue());
                 break;
             case REMOVE:
-                generator.SetFractalOctaves(generator.mOctaves-num);
+                generator.SetFractalPingPongStrength(generator.mPingPongStength - num.floatValue());
                 break;
         }
     }

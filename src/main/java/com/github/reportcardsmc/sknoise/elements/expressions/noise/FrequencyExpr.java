@@ -1,4 +1,4 @@
-package com.github.reportcardsmc.sknoise.elements.expressions;
+package com.github.reportcardsmc.sknoise.elements.expressions.noise;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer;
@@ -11,6 +11,7 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
+import com.github.reportcardsmc.sknoise.utilities.enums.FractalType;
 import com.github.reportcardsmc.sknoise.utilities.noise.NoiseGenerator;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
@@ -29,7 +30,7 @@ public class FrequencyExpr extends SimpleExpression<Number> {
     @Override
     protected @Nullable
     Number[] get(Event e) {
-        if (generatorExpression.getSingle(e) == null) return null;
+        if (generatorExpression.getSingle(e) == null || generatorExpression.getSingle(e).mFractalType.equals(FractalType.None)) return null;
         return new Number[]{generatorExpression.getSingle(e).mFrequency};
     }
 
@@ -65,7 +66,7 @@ public class FrequencyExpr extends SimpleExpression<Number> {
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
         Number num = (Number) delta[0];
         NoiseGenerator generator = generatorExpression.getSingle(e);
-        if (generator == null || num == null) return;
+        if (generator == null || num == null || generatorExpression.getSingle(e).mFractalType.equals(FractalType.None)) return;
         switch(mode) {
             case SET:
                 generator.SetFrequency(num.floatValue());

@@ -8,6 +8,7 @@ public class Simplex extends NoiseGenerator {
         SetNoiseType(NoiseType.OpenSimplex2);
         init();
         Seed(seed);
+        SetDomainWarpAmp(5000);
         this.noise = ValidGenerators.SIMPLEX;
     }
     public Simplex() {

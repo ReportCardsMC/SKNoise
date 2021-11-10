@@ -1,4 +1,4 @@
-package com.github.reportcardsmc.sknoise.elements.expressions;
+package com.github.reportcardsmc.sknoise.elements.expressions.noise;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Expression;
@@ -7,11 +7,7 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import com.github.reportcardsmc.sknoise.utilities.enums.ValidGenerators;
-import com.github.reportcardsmc.sknoise.utilities.noise.Cellular;
-import com.github.reportcardsmc.sknoise.utilities.noise.NoiseGenerator;
-import com.github.reportcardsmc.sknoise.utilities.noise.Perlin;
-import com.github.reportcardsmc.sknoise.utilities.noise.Simplex;
-import org.bukkit.Bukkit;
+import com.github.reportcardsmc.sknoise.utilities.noise.*;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,6 +35,8 @@ public class NewGeneratorExpr extends SimpleExpression<NoiseGenerator> {
                 return new Simplex[]{new Simplex(seed)};
             case CELLULAR:
                 return new Cellular[]{new Cellular(seed)};
+            case VALUE:
+                return new Value[]{new Value(seed)};
             default:
                 return null;
         }

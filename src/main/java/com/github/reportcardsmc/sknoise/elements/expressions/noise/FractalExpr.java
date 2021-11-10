@@ -1,4 +1,4 @@
-package com.github.reportcardsmc.sknoise.elements.expressions;
+package com.github.reportcardsmc.sknoise.elements.expressions.noise;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer;

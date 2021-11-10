@@ -76,7 +76,7 @@ public class FastNoise
     public float mLacunarity = 2.0f;
     public float mGain = 0.5f;
     private float mWeightedStrength = 0.0f;
-    private float mPingPongStength = 2.0f;
+    public float mPingPongStength = 2.0f;
 
     private float mFractalBounding = 1 / 1.75f;
 

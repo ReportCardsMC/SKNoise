@@ -1,4 +1,4 @@
-package com.github.reportcardsmc.sknoise.elements.expressions.cellular;
+package com.github.reportcardsmc.sknoise.elements.expressions.noise.cellular;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer;
@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 public class CellularReturnExpr extends SimpleExpression<CellularReturnType> {
 
     static {
-        Skript.registerExpression(CellularReturnExpr.class, CellularReturnType.class, ExpressionType.COMBINED, "[sknoise] cellular return type of %noisegenerator%");
+        Skript.registerExpression(CellularReturnExpr.class, CellularReturnType.class, ExpressionType.COMBINED, "[sknoise] (cellular|voronoi) return type of %noisegenerator%");
     }
 
     Expression<NoiseGenerator> noiseGeneratorExpression;

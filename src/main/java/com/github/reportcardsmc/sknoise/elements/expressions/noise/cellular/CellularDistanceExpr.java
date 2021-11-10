@@ -1,4 +1,4 @@
-package com.github.reportcardsmc.sknoise.elements.expressions.cellular;
+package com.github.reportcardsmc.sknoise.elements.expressions.noise.cellular;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer;
@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 public class CellularDistanceExpr extends SimpleExpression<CellularDistanceFunction> {
 
     static {
-        Skript.registerExpression(CellularDistanceExpr.class, CellularDistanceFunction.class, ExpressionType.COMBINED, "[sknoise] cellular distance [function] of %noisegenerator%");
+        Skript.registerExpression(CellularDistanceExpr.class, CellularDistanceFunction.class, ExpressionType.COMBINED, "[sknoise] (cellular|voronoi) distance [function] of %noisegenerator%");
     }
 
     Expression<NoiseGenerator> noiseGeneratorExpression;
