@@ -30,7 +30,7 @@ public class FrequencyExpr extends SimpleExpression<Number> {
     @Override
     protected @Nullable
     Number[] get(Event e) {
-        if (generatorExpression.getSingle(e) == null || generatorExpression.getSingle(e).mFractalType.equals(FractalType.None)) return null;
+        if (generatorExpression.getSingle(e) == null) return null;
         return new Number[]{generatorExpression.getSingle(e).mFrequency};
     }
 
@@ -66,7 +66,7 @@ public class FrequencyExpr extends SimpleExpression<Number> {
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
         Number num = (Number) delta[0];
         NoiseGenerator generator = generatorExpression.getSingle(e);
-        if (generator == null || num == null || generatorExpression.getSingle(e).mFractalType.equals(FractalType.None)) return;
+        if (generator == null || num == null) return;
         switch(mode) {
             case SET:
                 generator.SetFrequency(num.floatValue());

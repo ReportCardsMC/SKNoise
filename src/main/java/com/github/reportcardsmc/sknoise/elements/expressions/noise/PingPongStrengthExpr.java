@@ -17,7 +17,7 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
 @Name("PingPong Strength of Generator")
-@Description("Get/Change the ping pong strength of a generator")
+@Description("Get/Change the ping pong strength of a generator (Generator must have fractal type set to PingPong)")
 @Examples({"set ping pong strength of {_gen} to 2", "add 0.5 to ping pong strength of {_gen}"})
 public class PingPongStrengthExpr extends SimpleExpression<Number> {
 

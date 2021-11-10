@@ -17,7 +17,7 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
 @Name("Octave Count of Generator")
-@Description("Get/Change the octaves of a generator")
+@Description("Get/Change the octaves of a generator (Generator must have a fractal type active)")
 @Examples({"set octave count of {_gen} to 4", "add 1 to octave count of {_gen}"})
 public class OctavesExpr extends SimpleExpression<Integer> {
 

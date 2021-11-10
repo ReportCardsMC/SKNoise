@@ -82,7 +82,7 @@ public class FastNoise
 
     public CellularDistanceFunction mCellularDistanceFunction = CellularDistanceFunction.EuclideanSq;
     public CellularReturnType mCellularReturnType = CellularReturnType.Distance;
-    private float mCellularJitterModifier = 1.0f;
+    public float mCellularJitterModifier = 1.0f;
 
     private DomainWarpType mDomainWarpType = DomainWarpType.OpenSimplex2;
     private TransformType3D mWarpTransformType3D = TransformType3D.DefaultOpenSimplex2;

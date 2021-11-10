@@ -1,4 +1,4 @@
-package com.github.reportcardsmc.sknoise.elements.expressions.noise;
+package com.github.reportcardsmc.sknoise.elements.expressions.noise.cellular;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer;
@@ -16,13 +16,13 @@ import com.github.reportcardsmc.sknoise.utilities.noise.NoiseGenerator;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Gain of Generator")
-@Description("Get/Change the gain of a generator (Generator must have a fractal type active)")
-@Examples({"set gain of {_gen} to 0.05", "add 0.5 to gain of {_gen}"})
-public class GainExpr extends SimpleExpression<Number> {
+@Name("Cellular Jitter of Generator")
+@Description("Get/Change the cellular jitter of a generator (Generator must have fractal type set to Cellular)")
+@Examples({"set cellular jitter of {_gen} to 0.05", "add 0.5 to cellular jitter of {_gen}"})
+public class CellularJitterExpr extends SimpleExpression<Number> {
 
     static {
-        Skript.registerExpression(GainExpr.class, Number.class, ExpressionType.COMBINED, "[sknoise] gain of %noisegenerator%");
+        Skript.registerExpression(CellularJitterExpr.class, Number.class, ExpressionType.COMBINED, "[sknoise] cellular jitter of %noisegenerator%");
     }
 
     Expression<NoiseGenerator> generatorExpression;
@@ -31,7 +31,7 @@ public class GainExpr extends SimpleExpression<Number> {
     protected @Nullable
     Number[] get(Event e) {
         if (generatorExpression.getSingle(e) == null || generatorExpression.getSingle(e).mFractalType.equals(FractalType.None)) return null;
-        return new Number[]{generatorExpression.getSingle(e).mGain};
+        return new Number[]{generatorExpression.getSingle(e).mCellularJitterModifier};
     }
 
     @Override
@@ -46,7 +46,7 @@ public class GainExpr extends SimpleExpression<Number> {
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "Gain of generator: " + generatorExpression.toString(e, debug);
+        return "Cellular Jitter of generator: " + generatorExpression.toString(e, debug);
     }
 
     @SuppressWarnings("unchecked")
@@ -69,16 +69,16 @@ public class GainExpr extends SimpleExpression<Number> {
         if (generator == null || num == null || generatorExpression.getSingle(e).mFractalType.equals(FractalType.None)) return;
         switch(mode) {
             case SET:
-                generator.SetFractalGain(num.floatValue());
+                generator.SetCellularJitter(num.floatValue());
                 break;
             case RESET:
-                generator.SetFractalGain(0.5f);
+                generator.SetCellularJitter(1.0f);
                 break;
             case ADD:
-                generator.SetFractalGain(generator.mGain + num.floatValue());
+                generator.SetCellularJitter(generator.mCellularJitterModifier + num.floatValue());
                 break;
             case REMOVE:
-                generator.SetFractalGain(generator.mGain - num.floatValue());
+                generator.SetCellularJitter(generator.mCellularJitterModifier - num.floatValue());
                 break;
         }
     }
