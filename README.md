@@ -1,5 +1,5 @@
 
-# SKNoise
+# skNoise
 
 ###### The ultimate noise addon (No, not sound)
 
@@ -9,74 +9,30 @@
 
 ---
 
-Welcome to the official repository for SKNoise, a Skript addon that includes noise expressions for perlin noise and simplex noise!
+Welcome to the repository of skNoise, everything is documented on Skript Hub (Located above).
 
-I just recently started Java development, so yes this code is kind of messy but it will be receiving updates actively to create a better codebase and also allow for older versions than 1.16
+skNoise adds a bunch of cool number generators to use for anything that uses pseudo numbers, some use cases could be:
+- Land Generators
+- Chest Reward Generators
+- Seeded Random Number Generation
+- Smooth Random Particles
+- And much more!
 
-You can view the future releases and what's planned for them [here](https://github.com/ReportCardsMC/SKNoise/projects/1)
+---
+### Open Source Projects
+
+Here's a list of all open source projects that use skNoise:
+- None yet! You can add your project here with a pull request :)
 
 ---
 
-## Expressions
+### Developers
 
-### Perlin Noise
+There is nothing special to building skNoise, the project uses Maven, with no special configurations or jars imported.
 
-​	**Info** This expression is an expression to get a noise value at a given x, y, and z. There is no changers to this.
+#### To Contribute
 
-​	**Pattern** `[sknoise] perlin noise [at] [x ]%number%[,] [[y ]%number%[,] [[z ]%number%]]`
-
-​	**Returns** (Number) A number between *-1* and *1*
-
-​	**Example** 
-
-```vb
-set {_noise} to perlin noise at {_x} / 50, {_y}, {_z} / 50
-set block at location({_x}, {_noise} * 40, {_z}) to bedrock
-```
-
-### Simplex Noise
-
-​	**Info** This expression is an expression to get a noise value at a given x, y, and z. There is no changers to this.
-
-​	**Pattern** `[sknoise] simplex noise [at] [x ]%number%[,] [[y ]%number%[,] [[z ]%number%]]`
-
-​	**Returns** (Number) A number between *-1* and *1*
-
-​	**Example** 
-
-```vb
-set {_noise} to simplex noise at {_x} / 50, {_y}, {_z} / 50
-set block at location({_x}, {_noise} * 40, {_z}) to bedrock
-```
-
-### Seed
-
-​	**Info** The seed to the perlin generator or the simplex generator. Allows setting, adding, removing, and resetting
-
-​	**Pattern** `(perlin|simplex) [noise] seed`
-
-​	**Returns** (Number) The seed of the generator. (Perlin and Simplex are two separate seeds)*
-
-​	**Example** 
-
-```vb
-send "%perlin seed%" to player
-set simplex seed to {_seed}
-add 1 to perlin seed
-```
-
-### Average
-
-​	**Info** Get's an average of the given numbers
-
-​	**Pattern** `(average|avg) of %numbers%`
-
-​	**Returns** (Number) Average of numbers
-
-​	**Example** 
-
-```vb
-send "%average of 5, 10, 15, 20%" # Returns 12.5
-```
-
-### 
+- Clone the repository to your local machine
+- Open the project in your preferred IDE
+- Change what you would like to
+- Propose the changes with details about what you changed.
