@@ -1,8 +1,8 @@
-name: SKNoise
+name: skNoise
 version: ${project.version}
 main: com.github.reportcardsmc.sknoise.SkNoise
 api-version: 1.16
-prefix: SKNoise
+prefix: skNoise
 depend: [ Skript ]
 authors: [ ReportCards ]
 description: Implement noise generator functions into skript!
