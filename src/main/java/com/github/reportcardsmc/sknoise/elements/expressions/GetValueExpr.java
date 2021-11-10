@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 public class GetValueExpr extends SimpleExpression<Number> {
 
     static {
-        Skript.registerExpression(GetValueExpr.class, Number.class, ExpressionType.COMBINED, "test value of %noisegenerator% at %location%");
+        Skript.registerExpression(GetValueExpr.class, Number.class, ExpressionType.COMBINED, "[sknoise] value of %noisegenerator% at %location%");
     }
 
     Expression<NoiseGenerator> generatorExpression;
@@ -26,8 +26,6 @@ public class GetValueExpr extends SimpleExpression<Number> {
     Number[] get(Event e) {
         NoiseGenerator generator = generatorExpression.getSingle(e);
         Location location = locationExpression.getSingle(e);
-        Bukkit.getLogger().info("Gen: " + generatorExpression.toString(e, true));
-        Bukkit.getLogger().info("Loc: " + locationExpression.toString(e, true));
         if (generator == null || location == null) return new Number[]{-1};
         return new Number[]{(generator).GetNoise((float) location.getX(), (float) location.getY(), (float) location.getZ())};
     }

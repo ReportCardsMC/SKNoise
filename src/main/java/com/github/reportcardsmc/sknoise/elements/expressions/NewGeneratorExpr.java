@@ -30,7 +30,6 @@ public class NewGeneratorExpr extends SimpleExpression<NoiseGenerator> {
     protected @Nullable
     NoiseGenerator[] get(Event e) {
         ValidGenerators gen = generatorsExpression.getSingle(e);
-        Bukkit.getLogger().info("Gen type: " + generatorsExpression.toString(e, true));
         if (gen == null) return null;
         int seed = (numberExpression == null || numberExpression.getSingle(e) == null) ? new Random().nextInt() : numberExpression.getSingle(e).intValue();
         switch (gen) {
