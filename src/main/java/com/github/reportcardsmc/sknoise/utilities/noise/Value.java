@@ -16,4 +16,9 @@ public class Value extends NoiseGenerator {
         Seed(0);
         this.noise = ValidGenerators.VALUE;
     }
+
+    @Override
+    public String typeString() {
+        return "Value";
+    }
 }

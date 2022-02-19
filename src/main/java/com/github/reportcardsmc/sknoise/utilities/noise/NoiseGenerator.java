@@ -9,6 +9,8 @@ public abstract class NoiseGenerator extends FastNoise {
     private long bitMax = 2147483647;
     public ValidGenerators noise = ValidGenerators.VALUE;
 
+    abstract public String typeString();
+
     public void Seed(long seed) {
         SetSeed(Math.toIntExact(Math.floorMod(seed, bitMax * 2) - bitMax));
     }

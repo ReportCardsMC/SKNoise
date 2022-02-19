@@ -17,4 +17,9 @@ public class Simplex extends NoiseGenerator {
         Seed(0);
         this.noise = ValidGenerators.SIMPLEX;
     }
+
+    @Override
+    public String typeString() {
+        return "Simplex";
+    }
 }

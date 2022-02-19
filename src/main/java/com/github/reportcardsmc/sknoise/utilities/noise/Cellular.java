@@ -16,4 +16,9 @@ public class Cellular extends NoiseGenerator {
         Seed(0);
         this.noise = ValidGenerators.CELLULAR;
     }
+
+    @Override
+    public String typeString() {
+        return "Cellular";
+    }
 }

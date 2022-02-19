@@ -16,4 +16,9 @@ public class Perlin extends NoiseGenerator {
         Seed(0);
         this.noise = ValidGenerators.PERLIN;
     }
+
+    @Override
+    public String typeString() {
+        return "Perlin";
+    }
 }
