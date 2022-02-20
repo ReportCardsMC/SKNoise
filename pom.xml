@@ -36,8 +36,8 @@
     </build>
     <repositories>
         <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
+            <id>skriptlang-repo</id>
+            <url>https://repo.skriptlang.org/releases</url>
         </repository>
         <repository>
             <id>destroystokyo-repo</id>
