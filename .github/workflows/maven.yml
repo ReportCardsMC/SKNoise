@@ -27,5 +27,5 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.4
       with:
-        name: SkJade-nighty
-        path: /home/runner/work/SkJade/SkJade/target/
+        name: SKNoise-Nightly
+        path: /home/runner/work/SKNoise/SKNoise/target/
