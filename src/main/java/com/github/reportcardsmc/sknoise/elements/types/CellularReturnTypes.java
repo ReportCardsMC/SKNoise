@@ -8,7 +8,6 @@ import ch.njol.skript.registrations.Classes;
 import com.github.reportcardsmc.sknoise.utilities.enums.CellularReturnType;
 
 public class CellularReturnTypes {
-
     static {
         Classes.registerClass(new ClassInfo<>(CellularReturnType.class, "cellularreturntype")
                 .user("cellular[ ]return[ ]types?")
