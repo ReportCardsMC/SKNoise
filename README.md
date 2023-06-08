@@ -1,7 +1,7 @@
 
 # skNoise
 
-###### The ultimate noise addon (No, not sound)
+###### The ultimate noise addon
 
 [![Get on skUnity](https://skunity.com/branding/buttons/get_on_forums.png)](https://docs.skunity.com/syntax/search/addon:sknoise)
 
