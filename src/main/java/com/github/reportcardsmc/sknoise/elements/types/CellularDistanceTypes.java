@@ -42,10 +42,6 @@ public class CellularDistanceTypes {
                         return "cellulardistance-" + o.toString();
                     }
 
-                    @Override
-                    public String getVariableNamePattern() {
-                        return "cellulardistance-.+";
-                    }
                 })
                 .serializer(new EnumSerializer<>(CellularDistanceFunction.class)));
     }

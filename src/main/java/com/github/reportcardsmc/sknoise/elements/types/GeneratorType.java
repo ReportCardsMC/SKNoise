@@ -46,11 +46,6 @@ public class GeneratorType {
                     public String toVariableNameString(ValidGenerators o) {
                         return "gentype-" + o.toString();
                     }
-
-                    @Override
-                    public String getVariableNamePattern() {
-                        return "gentype-.+";
-                    }
                 })
                 .serializer(new EnumSerializer<>(ValidGenerators.class)));
     }

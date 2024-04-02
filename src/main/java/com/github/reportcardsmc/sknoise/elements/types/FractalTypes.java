@@ -41,11 +41,6 @@ public class FractalTypes {
                     public String toVariableNameString(FractalType o) {
                         return "fractaltype-" + o.toString();
                     }
-
-                    @Override
-                    public String getVariableNamePattern() {
-                        return "fractaltype-.+";
-                    }
                 })
                 .serializer(new EnumSerializer<>(FractalType.class)));
     }

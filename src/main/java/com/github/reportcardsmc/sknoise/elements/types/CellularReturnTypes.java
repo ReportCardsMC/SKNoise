@@ -41,10 +41,6 @@ public class CellularReturnTypes {
                         return "cellularreturn-" + o.toString();
                     }
 
-                    @Override
-                    public String getVariableNamePattern() {
-                        return "cellularreturn-.+";
-                    }
                 })
                 .serializer(new EnumSerializer<>(CellularReturnType.class)));
     }

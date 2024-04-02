@@ -31,11 +31,6 @@ public class Generator {
                     public String toVariableNameString(NoiseGenerator o) {
                         return null;
                     }
-
-                    @Override
-                    public String getVariableNamePattern() {
-                        return null;
-                    }
                 }));
     }
 
